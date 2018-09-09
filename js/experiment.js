@@ -69,14 +69,21 @@ function initExperiment() {
 	radialMenuL3 = formatRadialMenuData(menuL3Data);
 	
 	//Start the first trial
+
+	alert("hahah");
+
+
 	nextTrial();
 }
 
 // Wrapper around nextTrial() to prevent click events while loading menus
 function loadNextTrial(e){
 	e.preventDefault();
+	if (currentTrial === numTrials + 1) {
+		alert("Thanks for your participant. Please visit xxxx for a short survey. Thank you.");
+		currentTrial++;
+	}
 	nextTrial();
-	
 }
 
 // Move to next trai and record events

@@ -554,7 +554,7 @@ html,body { height:100%; width: 95vw }
 }
 
   #radialmenu {
-        font-family: 'stint ultra condensed', tahoma, sans-serif;
+        font-family:  sans-serif;
         fill: #fff !important;
     }
 
@@ -564,7 +564,7 @@ html,body { height:100%; width: 95vw }
     body > svg > text {
         font-size: 60px;
         fill: #fff;
-        font-family: 'stint ultra condensed', tahoma, sans-serif;
+        font-family: sans-serif;
     }
     .menuitem {
         fill: #555;

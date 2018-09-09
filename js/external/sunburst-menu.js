@@ -364,7 +364,7 @@ module.exports = (function d3_sunburst_menu(tree, n, container) {
                         return d.depth;
                     })
                     .attr("font-size", function(d) {
-                        return arc.outerRadius()(d) - arc.innerRadius()(d);
+                        return (arc.outerRadius()(d) - arc.innerRadius()(d)) * 0.5;
                     })
                     .attr("dy", function(d) {
                         return (arc.outerRadius()(d) - arc.innerRadius()(d)) * .85;
@@ -455,7 +455,8 @@ module.exports = (function d3_sunburst_menu(tree, n, container) {
 
     function label(n) {
         var label = n.name || n.id || "";
-        return label.toUpperCase();
+        // return label.toUpperCase();
+        return label;
     }
 
     /** handy dom attribute setter */
