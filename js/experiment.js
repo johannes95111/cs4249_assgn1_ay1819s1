@@ -1,7 +1,15 @@
 'use strict';
 
 // Location of data files
-const trialsFile = "./data/experiments.csv"
+const trialsFile1 = "./data/experiments/set1.csv"
+const trialsFile2 = "./data/experiments/set2.csv"
+const trialsFile3 = "./data/experiments/set3.csv"
+const trialsFile4 = "./data/experiments/set4.csv"
+const trialsFile5 = "./data/experiments/set5.csv"
+const trialsFile6 = "./data/experiments/set6.csv"
+const trialsFile7 = "./data/experiments/set7.csv"
+const trialsFile8 = "./data/experiments/set8.csv"
+// const trialsFile = "./data/experiments.csv"
 const menuL1File = "./data/menu_depth_1.csv"
 const menuL2File = "./data/menu_depth_2.csv"
 const menuL3File = "./data/menu_depth_3.csv"
@@ -22,6 +30,8 @@ var tracker = new ExperimentTracker();
 var markingMenuSubscription = null;
 var radialMenuSvg = null;
 
+// Track input id
+var cs4249UserId = 1;
 
 
 
@@ -37,9 +47,10 @@ function getData(relativePath) {
 
 // Loads the CSV data files on page load and store it to global variables
 function initExperiment() {
+	let trailsFile = `./data/experiments/set${cs4249UserId}.csv`;
 
 	// Get Trails
-	var data = getData(trialsFile);
+	var data = getData(trailsFile);
 
 	var records = data.split("\n");
 	numTrials = records.length - 1;
@@ -47,10 +58,14 @@ function initExperiment() {
 		var cells = records[i].split(",");
 		var menuType = cells[0].trim();
 		var menuDepth = cells[1].trim();
-		var targetItem = cells[2].trim();
+		var menuBreadth = cells[2].trim();
+		var inputDevice = cells[3].trim();
+		var targetItem = cells[4].trim();
 		trialsData[i] = {
 			'Menu Type': menuType,
 			'Menu Depth': menuDepth,
+			'Menu Breadth': menuBreadth,
+			'Input Device': inputDevice,
 			'Target Item': targetItem
 		};
 	}
@@ -69,10 +84,6 @@ function initExperiment() {
 	radialMenuL3 = formatRadialMenuData(menuL3Data);
 	
 	//Start the first trial
-
-	alert("hahah");
-
-
 	nextTrial();
 }
 
@@ -80,8 +91,19 @@ function initExperiment() {
 function loadNextTrial(e){
 	e.preventDefault();
 	if (currentTrial === numTrials + 1) {
-		alert("Thanks for your participant. Please visit xxxx for a short survey. Thank you.");
+		// alert("Thanks for your participant. Please visit xxxx for a short survey. Thank you.");
 		currentTrial++;
+
+		let inputPage = $('#input-page');
+	    let questionPage = $('#question-page');
+	    let expPage = $('#exp-page');
+	    let postQuestionPage = $('#post-question');
+
+	    // Init state: only show input page
+	    inputPage.hide();
+	    questionPage.hide();
+	    expPage.hide();
+	    postQuestionPage.show()
 	}
 	nextTrial();
 }
@@ -94,11 +116,15 @@ function nextTrial() {
 
 		var menuType = trialsData[currentTrial]['Menu Type'];
 		var menuDepth = trialsData[currentTrial]['Menu Depth'];
+		var menuBreadth = trialsData[currentTrial]['Menu Breadth'];
+		var inputDevice = trialsData[currentTrial]['Input Device'];
 		var targetItem = trialsData[currentTrial]['Target Item'];
 
 		document.getElementById("trialNumber").innerHTML = String(currentTrial) + "/" + String(numTrials);
 		document.getElementById("menuType").innerHTML = menuType;
 		document.getElementById("menuDepth").innerHTML = menuDepth;
+		document.getElementById("menuBreadth").innerHTML = menuBreadth;
+		document.getElementById("inputDevice").innerHTML = inputDevice;
 		document.getElementById("targetItem").innerHTML = targetItem;
 		document.getElementById("selectedItem").innerHTML = "&nbsp;";
 		// Set IV3 state over here
@@ -135,8 +161,6 @@ function nextTrial() {
 			}else if(menuDepth == 3){
 				menu = createRadialMenu(radialMenuL3);
 			}
-
-
 		}
 
 		currentTrial++;
@@ -144,7 +168,7 @@ function nextTrial() {
 		
 	    var nextButton = document.getElementById("nextButton");
 	    nextButton.innerHTML = "Done";
-		tracker.toCsv();
+		tracker.toCsv(cs4249UserId)
 	}
 }
 
@@ -376,3 +400,40 @@ function formatRadialMenuData(data) {
 	};
 
 }
+
+
+$(document).ready(function(){
+    let inputPage = $('#input-page');
+    let questionPage = $('#question-page');
+    let expPage = $('#exp-page');
+
+    // Init state: only show input page
+    inputPage.show();
+    questionPage.hide();
+    expPage.hide();
+
+
+    // User id input => pre-question
+    $("#next1").click((e) => {
+		e.preventDefault();
+		cs4249UserId = $('#idInput').val();
+		console.log(cs4249UserId)
+		inputPage.hide();
+      questionPage.show();
+      expPage.hide();
+    });
+
+
+    // Pre-question => experiemnt
+    $('#next2').click(() => {
+      inputPage.hide();
+      questionPage.hide();
+      expPage.show();
+
+      initExperiment();
+    });
+
+
+
+
+  });

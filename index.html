@@ -1,76 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Experiment to compare Marking and Radial menus</title>
+  <title>Experiment to compare Marking and Radial menus</title>
 
-	<!-- Marking Menu Stylesheet -->
-   <link href="./css/external/marking-menu.css" rel="stylesheet">
-	<!-- Fonts -->
-	<link href='https://fonts.googleapis.com/css?family=Stint+Ultra+Condensed' rel='stylesheet' type='text/css'>
-	<!-- Experiment Stylesheet -->
-	<link href="./css/experiment.css" rel="stylesheet"> 
+  <!-- Marking Menu Stylesheet -->
+  <link href="./css/external/marking-menu.css" rel="stylesheet">
+  <!-- Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Stint+Ultra+Condensed' rel='stylesheet' type='text/css'>
+  <!-- Experiment Stylesheet -->
+  <link href="./css/experiment.css" rel="stylesheet"> 
 
 
-  </head>
-  <body onload="initExperiment()" >
 
-	<!-- State Div -->
-    <div class="row" id="state-container">
-      <div class="cellstate">
-	<span class="label label-primary">Trial</span>
-	<span class="label label-default" id="trialNumber">&nbsp;</span>
+</head>
+<!-- <body onload="initExperiment()" > -->
+  <body>
+
+    <div class="container" style="padding-top: 10px;">
+
+      <div id="input-page">
+        <div style="text-align: center">
+          <p>
+            Hi, welcome to the experiment of analysing performance of marking menu and radial menu!
+          </p>
+          <p>
+            Please read through the instruction before you start the experiment.
+          </p>
+          <textarea rows="40" cols="100">
+            *** Part 1: What You Need to Know ***
+
+            First of all, let me briefly introduce Marking Menu and Radial Menu to you.
+
+            <b>Marking Menu</b> is a circular context menu that users can select items by moving cursor in different directions. Initially items will be showed up around the cursor as a circle. Then moving cursor to an item means selecting that item, or going to next level under that item with generating a new circle. The new circle for next level will surround the previous selected item, which means it will have a different centre compared with the initial one.
+
+            Radial Menu also has a circular context interface, however users must always click an item to select or go to next level. When clicking an item for entering next level the content circle will hardly move, which means the centre of Radial Menu should be fixed since initialization. 
+
+            In this experiment, Marking Menu and Radial Menu will be presented as below:
+          </textarea> 
+          <p>Please Select Your User ID: 
+            <span class="form-group">
+              <select class="form-control" id="idInput">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+              </select>
+            </span>
+            <div style="text-align: center">
+              <button type="button" class="btn btn-primary" id="next1">Next</button>
+            </div>
+
+          </p>
+        </div>
+
+        <!-- <button id="next1">Next</button> -->
       </div>
-      <div class="cellstate">
-      <span class="label label-primary">Menu Type</span>
-	<span class="label label-default" id="menuType">&nbsp;</span>
+      <div id="question-page" style="display: none;">
+
+
+
+    <form>
+      <div class="form-group" style="text-align: center">
+        <label>
+          <p>
+            Please fill in the
+            <b><a href="https://goo.gl/forms/xSJMFYVWUTGxAgMq2" target="_blank">Pre-Experiment Survey</a></b>
+            before starting the experiment.
+          </p>
+        </label>
       </div>
-      <div class="cellstate">
-        <span class="label label-primary">Menu Depth</span>
-	<span class="label label-default" id="menuDepth">&nbsp;</span>
+      <div style="text-align: center">
+        <button type="button" class="btn btn-primary" id="next2">Start</button>
       </div>
-      <div class="cellstate">
-        <span class="label label-primary">IV 3</span>
-	<span class="label label-default">To be implemented</span>
-      </div>
-            <div class="cellstimulusresponse">
-        <span class="label label-primary">Please select</span>
-	<span class="label label-default" id="targetItem">&nbsp;</span>
-      </div>
-        <div class="cellstimulusresponse">
-        <span class="label label-primary">Item selected</span>
-	<span class="label label-default" id="selectedItem">&nbsp;</span>
-      </div>            
-        <div class="cellnext">
-      		<button id="nextButton" type="button" class="btn btn-block btn-primary btn-lg" onclick="loadNextTrial(event)">Next</button>
-      </div>      
+    </form>
+  </div>
+
+  <div id="post-question" style="display: none;">
+    <div style="text-align: center">
+      <p>
+        Thank you for completing the experiment!
+      </p>
+      <p>
+        Please help to fill in the
+        <b><a href="https://goo.gl/forms/3rfnCKlFaQDcWjlH2" target="_blank">Post-Experiment Survey</a></b>.
+      </p>
+      <p>
+        Have a good day!
+      </p>
     </div>
+  </div>
 
-<!--  Interaction Div-->
+</div>
 
-	<div class="row" id="interaction-container"  >
-	</div>
+<div id="exp-page" style="display: none;">
+  <!-- State Div -->
+  <div class="row" id="state-container">
+    <div class="cellstate">
+      <span class="label label-primary">Trial</span>
+      <span class="label label-default" id="trialNumber">&nbsp;</span>
+    </div>
+    <div class="cellstate">
+      <span class="label label-primary">Menu Type</span>
+      <span class="label label-default" id="menuType">&nbsp;</span>
+    </div>
+    <div class="cellstate">
+      <span class="label label-primary">Menu Depth</span>
+      <span class="label label-default" id="menuDepth">&nbsp;</span>
+    </div>
+    <div class="cellstate">
+      <span class="label label-primary">Menu Breadth</span>
+      <span class="label label-default" id="menuBreadth">&nbsp;</span>
+    </div>
+    <div class="cellstate">
+      <span class="label label-primary">Input Device</span>
+      <span class="label label-default" id="inputDevice">&nbsp;</span>
+    </div>
+    <div class="cellstimulusresponse">
+      <span class="label label-primary">Please select</span>
+      <span class="label label-default" id="targetItem">&nbsp;</span>
+    </div>
+    <div class="cellstimulusresponse">
+      <span class="label label-primary">Item selected</span>
+      <span class="label label-default" id="selectedItem">&nbsp;</span>
+    </div>            
+    <div class="cellnext">
+      <button id="nextButton" type="button" class="btn btn-block btn-primary btn-lg" onclick="loadNextTrial(event)">Next</button>
+    </div>      
+  </div>
+
+  <!--  Interaction Div-->
+
+  <div class="row" id="interaction-container"  >
+  </div>
+</div>
 
 
+</body>
 
-  </body>
-    
-    
-    <!-- Marking Menu Scripts -->
-    <script src="./js/external/jquery-3.3.1.min.js"></script>
-    <script src="./js/external/rxjs.umd.js"></script>
-  	<script src="./js/external/marking-menu.js"></script>
-    
-    <!-- Radial Menu Scripts -->
-    <script src="./js/external/d3.min.js" ></script>
-    <script src="./js/external/es6-promise.auto.min.js"></script>
-    <script src="./js/external/sunburst-menu.js"></script>
-    
-    <!-- Experiment Scripts -->
-    <script src="./js/experiment-tracker.js"></script>
-    <script src="./js/experiment.js"></script>
+
+<!-- Marking Menu Scripts -->
+<script src="./js/external/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="./js/external/rxjs.umd.js"></script>
+<script src="./js/external/marking-menu.js"></script>
+
+<!-- Radial Menu Scripts -->
+<script src="./js/external/d3.min.js" ></script>
+<script src="./js/external/es6-promise.auto.min.js"></script>
+<script src="./js/external/sunburst-menu.js"></script>
+
+<!-- Experiment Scripts -->
+<script src="./js/experiment-tracker.js"></script>
+<script src="./js/experiment.js"></script>
+
+
+<script type="text/javascript">
+
+
+</script>
 
 </html>
