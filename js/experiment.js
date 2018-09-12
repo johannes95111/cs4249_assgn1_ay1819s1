@@ -1,14 +1,6 @@
 'use strict';
 
 // Location of data files
-// const trialsFile1 = "./data/experiments/set1.csv"
-// const trialsFile2 = "./data/experiments/set2.csv"
-// const trialsFile3 = "./data/experiments/set3.csv"
-// const trialsFile4 = "./data/experiments/set4.csv"
-// const trialsFile5 = "./data/experiments/set5.csv"
-// const trialsFile6 = "./data/experiments/set6.csv"
-// const trialsFile7 = "./data/experiments/set7.csv"
-// const trialsFile8 = "./data/experiments/set8.csv"
 const menuD1B4File = "./data/menus/menu_depth_1_breadth_4.csv"
 const menuD2B4File = "./data/menus/menu_depth_2_breadth_4.csv"
 const menuD3B4File = "./data/menus/menu_depth_3_breadth_4.csv"
@@ -148,6 +140,8 @@ function nextTrial() {
 		tracker.trial = currentTrial;
 		tracker.menuType = menuType;
 		tracker.menuDepth = menuDepth;
+		tracker.menuBreadth = menuBreadth;
+		tracker.inputDevice = inputDevice;
 		tracker.targetItem = targetItem;
 
 		if (menuType === "Marking") {
@@ -446,7 +440,6 @@ function formatRadialMenuData(data) {
 
 }
 
-
 $(document).ready(function(){
     let inputPage = $('#input-page');
     let questionPage = $('#question-page');
@@ -477,8 +470,5 @@ $(document).ready(function(){
 
       initExperiment();
     });
-
-
-
 
   });
