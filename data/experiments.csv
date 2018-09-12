@@ -1,9 +1,0 @@
-Menu Type,Menu Depth,Menu Breadth,Input Device,Target Item
-Marking,1,8,Mouse,Clothing
-Marking,1,8,Mouse,A
-Marking,1,8,Mouse,B
-Marking,2,8,Mouse,Hats
-Marking,3,8,Mouse,Jeans
-Radial,1,8,Touchpad,Clothing
-Radial,2,8,Touchpad,Hats
-Radial,3,8,Touchpad,Jeans
