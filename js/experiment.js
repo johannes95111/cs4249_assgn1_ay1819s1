@@ -1,40 +1,45 @@
 'use strict';
 
 // Location of data files
-const trialsFile1 = "./data/experiments/set1.csv"
-const trialsFile2 = "./data/experiments/set2.csv"
-const trialsFile3 = "./data/experiments/set3.csv"
-const trialsFile4 = "./data/experiments/set4.csv"
-const trialsFile5 = "./data/experiments/set5.csv"
-const trialsFile6 = "./data/experiments/set6.csv"
-const trialsFile7 = "./data/experiments/set7.csv"
-const trialsFile8 = "./data/experiments/set8.csv"
-// const trialsFile = "./data/experiments.csv"
-const menuL1File = "./data/menu_depth_1.csv"
-const menuL2File = "./data/menu_depth_2.csv"
-const menuL3File = "./data/menu_depth_3.csv"
+// const trialsFile1 = "./data/experiments/set1.csv"
+// const trialsFile2 = "./data/experiments/set2.csv"
+// const trialsFile3 = "./data/experiments/set3.csv"
+// const trialsFile4 = "./data/experiments/set4.csv"
+// const trialsFile5 = "./data/experiments/set5.csv"
+// const trialsFile6 = "./data/experiments/set6.csv"
+// const trialsFile7 = "./data/experiments/set7.csv"
+// const trialsFile8 = "./data/experiments/set8.csv"
+const menuD1B4File = "./data/menus/menu_depth_1_breadth_4.csv"
+const menuD2B4File = "./data/menus/menu_depth_2_breadth_4.csv"
+const menuD3B4File = "./data/menus/menu_depth_3_breadth_4.csv"
+const menuD1B8File = "./data/menus/menu_depth_1_breadth_8.csv"
+const menuD2B8File = "./data/menus/menu_depth_2_breadth_8.csv"
+const menuD3B8File = "./data/menus/menu_depth_3_breadth_8.csv"
 
 // Global variables
 var menu;
 var trialsData = [];
 var numTrials = 0;
 var currentTrial = 1;
-var markingMenuL1 = [];
-var markingMenuL2 = [];
-var markingMenuL3 = [];
+var markingMenuD1B4 = [];
+var markingMenuD2B4 = [];
+var markingMenuD3B4 = [];
+var markingMenuD1B8 = [];
+var markingMenuD2B8 = [];
+var markingMenuD3B8 = [];
 var radialMenuTree = null;
-var radialMenuL1 = [];
-var radialMenuL2 = [];
-var radialMenuL3 = [];
+var radialMenuD1B4 = [];
+var radialMenuD2B4 = [];
+var radialMenuD3B4 = [];
+var radialMenuD1B8 = [];
+var radialMenuD2B8 = [];
+var radialMenuD3B8 =[];
 var tracker = new ExperimentTracker();
 var markingMenuSubscription = null;
 var radialMenuSvg = null;
 
 // Track input id
 var cs4249UserId = 1;
-
-
-
 
 // Load CSV files from data and return text
 function getData(relativePath) {
@@ -71,17 +76,26 @@ function initExperiment() {
 	}
 
 	// Get Menus
-	var menuL1Data = getData(menuL1File);
-	var menuL2Data = getData(menuL2File);
-	var menuL3Data = getData(menuL3File);
+	var menuD1B4Data = getData(menuD1B4File);
+	var menuD2B4Data = getData(menuD2B4File);
+	var menuD3B4Data = getData(menuD3B4File);
+	var menuD1B8Data = getData(menuD1B8File);
+	var menuD2B8Data = getData(menuD2B8File);
+	var menuD3B8Data = getData(menuD3B8File);
 	
 	// Format CSV Menu to respective Menu structures
-	markingMenuL1 = formatMarkingMenuData(menuL1Data);
-	markingMenuL2 = formatMarkingMenuData(menuL2Data);
-	markingMenuL3 = formatMarkingMenuData(menuL3Data);
-	radialMenuL1 = formatRadialMenuData(menuL1Data);
-	radialMenuL2 = formatRadialMenuData(menuL2Data);
-	radialMenuL3 = formatRadialMenuData(menuL3Data);
+	markingMenuD1B4 = formatMarkingMenuData(menuD1B4Data);
+	markingMenuD2B4 = formatMarkingMenuData(menuD2B4Data);
+	markingMenuD3B4 = formatMarkingMenuData(menuD3B4Data);
+	markingMenuD1B8 = formatMarkingMenuData(menuD1B8Data);
+	markingMenuD2B8 = formatMarkingMenuData(menuD2B8Data);
+	markingMenuD3B8 = formatMarkingMenuData(menuD3B8Data);
+	radialMenuD1B4 = formatRadialMenuData(menuD1B4Data);
+	radialMenuD2B4 = formatRadialMenuData(menuD2B4Data);
+	radialMenuD3B4 = formatRadialMenuData(menuD3B4Data);
+	radialMenuD1B8 = formatRadialMenuData(menuD1B8Data);
+	radialMenuD2B8 = formatRadialMenuData(menuD2B8Data);
+	radialMenuD3B8 = formatRadialMenuData(menuD3B8Data);
 	
 	//Start the first trial
 	nextTrial();
@@ -140,12 +154,27 @@ function nextTrial() {
 			initializeMarkingMenu();
 			
 			if(menuDepth == 1){
-				menu = MarkingMenu(markingMenuL1, document.getElementById('marking-menu-container'));
+				if(menuBreadth == 4){
+					menu = MarkingMenu(markingMenuD1B4, document.getElementById('marking-menu-container'));
+				}
+				else if(menuBreadth == 8){
+					menu = MarkingMenu(markingMenuD1B8, document.getElementById('marking-menu-container'));
+				}	
 			}
 			else if(menuDepth == 2){
-				menu = MarkingMenu(markingMenuL2, document.getElementById('marking-menu-container'));
+				if(menuBreadth == 4){
+					menu = MarkingMenu(markingMenuD2B4, document.getElementById('marking-menu-container'));
+				}
+				else if(menuBreadth == 8){
+					menu = MarkingMenu(markingMenuD2B8, document.getElementById('marking-menu-container'));
+				}
 			}else if(menuDepth == 3){
-				menu = MarkingMenu(markingMenuL3, document.getElementById('marking-menu-container'));
+				if(menuBreadth == 4){
+					menu = MarkingMenu(markingMenuD3B4, document.getElementById('marking-menu-container'));
+				}
+				else if(menuBreadth == 8){
+					menu = MarkingMenu(markingMenuD3B8, document.getElementById('marking-menu-container'));
+				}
 			}
 
 			markingMenuSubscription = menu.subscribe((selection) => markingMenuOnSelect(selection));
@@ -154,12 +183,27 @@ function nextTrial() {
 
 			initializeRadialMenu();			
 			if (menuDepth == 1){
-				menu = createRadialMenu(radialMenuL1);
+				if(menuBreadth == 4){
+					menu = createRadialMenu(radialMenuD1B4);
+				}
+				else if(menuBreadth == 8){
+					menu = createRadialMenu(radialMenuD1B8);
+				}
 			}
 			else if(menuDepth == 2){
-				menu = createRadialMenu(radialMenuL2);
+				if(menuBreadth == 4){
+					menu = createRadialMenu(radialMenuD2B4);
+				}
+				else if(menuBreadth == 8){
+					menu = createRadialMenu(radialMenuD2B8);
+				}
 			}else if(menuDepth == 3){
-				menu = createRadialMenu(radialMenuL3);
+				if(menuBreadth == 4){
+					menu = createRadialMenu(radialMenuD3B4);
+				}
+				else if(menuBreadth == 8){
+					menu = createRadialMenu(radialMenuD3B8);
+				}
 			}
 		}
 
