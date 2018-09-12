@@ -1,25 +1,73 @@
 Menu Type,Menu Depth,Menu Breadth,Input Device,Target Item
-Radial,1,4,Mouse,xxx
-Radial,2,4,Mouse,xxx
-Radial,3,4,Mouse,xxx
-Radial,1,8,Mouse,xxx
-Radial,2,8,Mouse,xxx
-Radial,3,8,Mouse,xxx
-Radial,1,4,Touchpad,xxx
-Radial,2,4,Touchpad,xxx
-Radial,3,4,Touchpad,xxx
-Radial,1,8,Touchpad,xxx
-Radial,2,8,Touchpad,xxx
-Radial,3,8,Touchpad,xxx
-Marking,1,4,Mouse,xxx
-Marking,2,4,Mouse,xxx
-Marking,3,4,Mouse,xxx
-Marking,1,8,Mouse,xxx
-Marking,2,8,Mouse,xxx
-Marking,3,8,Mouse,xxx
-Marking,1,4,Touchpad,xxx
-Marking,2,4,Touchpad,xxx
-Marking,3,4,Touchpad,xxx
-Marking,1,8,Touchpad,xxx
-Marking,2,8,Touchpad,xxx
-Marking,3,8,Touchpad,xxx
+Radial,1,4,Mouse,Clothing
+Radial,1,4,Mouse,Animal
+Radial,1,4,Mouse,Fruit
+Radial,2,4,Mouse,Boat
+Radial,2,4,Mouse,Banana
+Radial,2,4,Mouse,Fish
+Radial,3,4,Mouse,Red Banana
+Radial,3,4,Mouse,Yellow Train
+Radial,3,4,Mouse,Blue Frog
+Radial,1,8,Mouse,Fruit
+Radial,1,8,Mouse,Instrument
+Radial,1,8,Mouse,Furniture
+Radial,2,8,Mouse,Printer
+Radial,2,8,Mouse,Sofa
+Radial,2,8,Mouse,Guitar
+Radial,3,8,Mouse,Yellow Bed
+Radial,3,8,Mouse,Purple Envelope
+Radial,3,8,Mouse,Black Violin
+Radial,1,4,Touchpad,Clothing
+Radial,1,4,Touchpad,Animal
+Radial,1,4,Touchpad,Fruit
+Radial,2,4,Touchpad,Jacket
+Radial,2,4,Touchpad,Blouse
+Radial,2,4,Touchpad,Bus
+Radial,3,4,Touchpad,Red Bus
+Radial,3,4,Touchpad,Purple Plum
+Radial,3,4,Touchpad,Purple Van
+Radial,1,8,Touchpad,Clothing
+Radial,1,8,Touchpad,Animal
+Radial,1,8,Touchpad,Transportation
+Radial,2,8,Touchpad,Accordion
+Radial,2,8,Touchpad,Airplane
+Radial,2,8,Touchpad,Mattress
+Radial,3,8,Touchpad,White Snake
+Radial,3,8,Touchpad,Pink Camera
+Radial,3,8,Touchpad,Blue Trumpet
+Marking,1,4,Mouse,Animal
+Marking,1,4,Mouse,Fruit
+Marking,1,4,Mouse,Transportation
+Marking,2,4,Mouse,Bird
+Marking,2,4,Mouse,Socks
+Marking,2,4,Mouse,Butterfly
+Marking,3,4,Mouse,Yellow Pear
+Marking,3,4,Mouse,Blue Jeans
+Marking,3,4,Mouse,Yellow Jacket
+Marking,1,8,Mouse,Instrument
+Marking,1,8,Mouse,Furniture
+Marking,1,8,Mouse,Animal
+Marking,2,8,Mouse,Spider
+Marking,2,8,Mouse,Tablet
+Marking,2,8,Mouse,Papaya
+Marking,3,8,Mouse,White Cat
+Marking,3,8,Mouse,Pink Boat
+Marking,3,8,Mouse,Green Ruler
+Marking,1,4,Touchpad,Clothing
+Marking,1,4,Touchpad,Transportation
+Marking,1,4,Touchpad,Fruit
+Marking,2,4,Touchpad,Plum
+Marking,2,4,Touchpad,Frog
+Marking,2,4,Touchpad,Train
+Marking,3,4,Touchpad,Purple Van
+Marking,3,4,Touchpad,Purple Fish
+Marking,3,4,Touchpad,Red Bird
+Marking,1,8,Touchpad,Stationery
+Marking,1,8,Touchpad,Electronic
+Marking,1,8,Touchpad,Furniture
+Marking,2,8,Touchpad,Shirt
+Marking,2,8,Touchpad,Berry
+Marking,2,8,Touchpad,Highlighter
+Marking,3,8,Touchpad,Red Gloves
+Marking,3,8,Touchpad,Black Stool
+Marking,3,8,Touchpad,Blue Bookcase
