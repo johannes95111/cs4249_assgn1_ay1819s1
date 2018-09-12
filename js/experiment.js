@@ -39,7 +39,7 @@ var markingMenuSubscription = null;
 var radialMenuSvg = null;
 
 // Track input id
-var cs4249UserId = 1;
+var cs4249UserId = 0;
 
 // Load CSV files from data and return text
 function getData(relativePath) {
@@ -53,6 +53,7 @@ function getData(relativePath) {
 // Loads the CSV data files on page load and store it to global variables
 function initExperiment() {
 	let trailsFile = `./data/experiments/set${cs4249UserId}.csv`;
+	console.log(trailsFile)
 
 	// Get Trails
 	var data = getData(trailsFile);
