@@ -1,7 +1,6 @@
 // Class used to track experiment
 class ExperimentTracker {
 
-
 	constructor() {
 		this.trials = [];
 		this.attempt = 0;
@@ -26,9 +25,15 @@ class ExperimentTracker {
 		this.startTime = Date.now();
 	}
 
-	recordSelectedItem(selectedItem) {
+	recordMarkingSelectedItem(selectedItem) {
 		this.selectedItem = selectedItem;
 		this.stopTimer();
+	}
+
+	recordRadialSelectedItem(selectedItem) {
+		this.selectedItem = selectedItem;
+		this.stopTimer();
+		this.newAttempt();
 	}
 
 	stopTimer() {
@@ -36,11 +41,18 @@ class ExperimentTracker {
 		this.endTime = Date.now();
 		this.trials.push([this.trial, this.attempt, this.menuType, this.menuDepth, this.menuBreadth, this.inputDevice, this.targetItem, this.selectedItem, this.startTime, this.endTime])
 		this.resetTimers();
-		this.attempt++;
 
 	}
 
-	newTrial() {
+	newAttempt() {
+		this.attempt++;
+	}
+
+	newMarkingTrial() {
+		this.attempt = 0;
+	}
+
+	newRadialTrial() {
 		this.attempt = 1;
 	}
 
@@ -58,6 +70,5 @@ class ExperimentTracker {
 		document.body.appendChild(hiddenLink);
 		hiddenLink.click();
 	}
-
 
 }

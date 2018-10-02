@@ -136,7 +136,6 @@ function nextTrial() {
 		document.getElementById("selectedItem").innerHTML = "&nbsp;";
 		// Set IV3 state over here
 
-		tracker.newTrial();
 		tracker.trial = currentTrial;
 		tracker.menuType = menuType;
 		tracker.menuDepth = menuDepth;
@@ -145,7 +144,8 @@ function nextTrial() {
 		tracker.targetItem = targetItem;
 
 		if (menuType === "Marking") {
-				
+			
+			tracker.newMarkingTrial();
 			initializeMarkingMenu();
 			
 			if(menuDepth == 1){
@@ -176,6 +176,7 @@ function nextTrial() {
 
 		} else if (menuType === "Radial") {
 
+			tracker.newRadialTrial();
 			initializeRadialMenu();			
 			if (menuDepth == 1){
 				if(menuBreadth == 4){
@@ -210,10 +211,6 @@ function nextTrial() {
 		tracker.toCsv(cs4249UserId)
 	}
 }
-
-
-
-
 
 /*Functions related to MarkingMenu*/
 
@@ -281,12 +278,13 @@ function formatMarkingMenuData(data) {
 function markingMenuOnMouseDown(){
 
 	tracker.startTimer();
+	tracker.newAttempt();
 }
 
 //Function to start tracking timer on mouse down
 function markingMenuOnSelect(selectedItem){
 
-	tracker.recordSelectedItem(selectedItem.name);
+	tracker.recordMarkingSelectedItem(selectedItem.name);
 	document.getElementById("selectedItem").innerHTML = selectedItem.name;
 }
 
@@ -357,7 +355,7 @@ function toggleRadialMenu(e) {
 	}else{
 		
 		// Record previous item
-		tracker.recordSelectedItem(null);
+		tracker.recordRadialSelectedItem(null);
 		
 		if(radialMenuTree != null){
 			menu = module.exports(radialMenuTree, {
@@ -375,7 +373,7 @@ function toggleRadialMenu(e) {
 //Callback for radialmenu when a leaf node is selected
 function radialMenuOnSelect() {
 
-	tracker.recordSelectedItem(this.id);
+	tracker.recordRadialSelectedItem(this.id);
 	var radialmenu = document.getElementById('radialmenu');
 	radialmenu.parentNode.removeChild(radialmenu);
 	
